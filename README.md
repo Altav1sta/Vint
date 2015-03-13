@@ -4,7 +4,8 @@ you can find in <b>"Manual.pdf"</b>.
 
 I created this game to help my friend with his diploma. This version is not final. I gonna hardly improve interface and try to fix mistakes.
 
-Any commentaries are welcome!
+Any <a href="https://github.com/Altav1sta/Vint/issues/1">commentaries</a> are welcome!
+
 
 
 
