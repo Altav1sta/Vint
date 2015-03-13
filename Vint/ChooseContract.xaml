@@ -1,0 +1,30 @@
+﻿<Window x:Class="Vint.ChooseContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Выберите подходящий контракт" Height="280" Width="620" Loaded="Window_Loaded" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" 
+        ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Icon="screw26.ico" Closing="Window_Closing">
+    <Canvas Name="mainArea">
+        <Canvas.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="WhiteSmoke" Offset="0"/>
+                <GradientStop Color="#FFF7F7F7" Offset="1"/>
+            </LinearGradientBrush>
+        </Canvas.Background>
+        <Expander Name="expEast" Header="East" Width="75" Canvas.Right="0" IsExpanded="True" ScrollViewer.CanContentScroll="True">
+            <Label Name="lblExpEast" Content="" ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Center" Height="230" Background="White" Foreground="Blue"/>
+        </Expander>
+
+        <Expander Name="expNorth" Header="North" Width="75" Canvas.Right="75" IsExpanded="True">
+            <Label Name="lblExpNorth" Content="" ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Center" Height="230" Background="White" Foreground="DarkGreen"/>
+        </Expander>
+
+        <Expander Name="expWest" Header="West" Width="75" Canvas.Right="150" IsExpanded="True">
+            <Label Name="lblExpWest" Content="" ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Center" Height="230" Background="White" Foreground="Blue"/>
+        </Expander>
+
+        <Expander Name="expSouth" Header="Player" Width="75" Canvas.Right="225" IsExpanded="True" ScrollViewer.CanContentScroll="True">
+            <Label Name="lblExpSouth" Content="" ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Center" Height="230" Background="White" Foreground="DarkGreen"/>
+        </Expander>
+
+    </Canvas>
+</Window>

@@ -1,0 +1,170 @@
+﻿<Window x:Class="Vint.ResultTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Счет" Height="580" Width="620" ResizeMode="CanMinimize" Icon="screw26.ico" WindowStartupLocation="CenterOwner" WindowStyle="ThreeDBorderWindow">
+    <Grid>
+        <GridSplitter HorizontalAlignment="Left" Height="504" Margin="298,0,0,0" VerticalAlignment="Top" Width="4"/>
+        <GridSplitter HorizontalAlignment="Left" Height="610" Margin="303,-145,0,0" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <GridSplitter HorizontalAlignment="Left" Height="612" Margin="304,20,0,-134" VerticalAlignment="Top" Width="4" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+
+
+
+        <Label Name="lblName1" Content="Игрок и Бот 1" Background="LightGray" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblName2" Content="Игрок и Бот 2" Background="LightGray" HorizontalAlignment="Left" Margin="100,162,0,0" VerticalAlignment="Top"/>
+        <Label Name="lblName3" Content="Игрок и Бот 3" Background="LightGray" HorizontalAlignment="Left" Margin="100,328,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Бот 2 и Бот 3" Background="LightGray" HorizontalAlignment="Left" Margin="406,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Бот 1 и Бот 3" Background="LightGray" HorizontalAlignment="Left" Margin="406,162,0,0" VerticalAlignment="Top"/>
+        <Label Content="Бот 1 и Бот 2" Background="LightGray" HorizontalAlignment="Left" Margin="406,328,0,0" VerticalAlignment="Top"/>
+
+
+
+        <TextBox Name="txtOnnersEnemy1" HorizontalAlignment="Left" Height="23" Margin="470,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesEnemy1" HorizontalAlignment="Left" Height="23" Margin="470,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsEnemy1" HorizontalAlignment="Left" Height="23" Margin="470,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusEnemy1" HorizontalAlignment="Left" Height="23" Margin="470,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveEnemy1" HorizontalAlignment="Left" Height="23" Margin="470,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="512,48,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="307,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="307,54,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="307,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="307,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="307,123,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtOnnersMy1" HorizontalAlignment="Left" Height="23" Margin="173,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesMy1" HorizontalAlignment="Left" Height="23" Margin="173,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsMy1" HorizontalAlignment="Left" Height="23" Margin="173,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusMy1" HorizontalAlignment="Left" Height="23" Margin="173,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveMy1" HorizontalAlignment="Left" Height="23" Margin="173,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="215,48,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtOnnersMy2" HorizontalAlignment="Left" Height="23" Margin="172,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesMy2" HorizontalAlignment="Left" Height="23" Margin="172,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsMy2" HorizontalAlignment="Left" Height="23" Margin="172,241,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusMy2" HorizontalAlignment="Left" Height="23" Margin="172,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveMy2" HorizontalAlignment="Left" Height="23" Margin="172,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="214,212,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="9,195,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="9,218,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="9,241,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="9,264,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="9,287,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtOnnersEnemy2" HorizontalAlignment="Left" Height="23" Margin="470,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesEnemy2" HorizontalAlignment="Left" Height="23" Margin="470,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsEnemy2" HorizontalAlignment="Left" Height="23" Margin="470,241,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusEnemy2" HorizontalAlignment="Left" Height="23" Margin="470,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveEnemy2" HorizontalAlignment="Left" Height="23" Margin="470,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="512,212,0,0" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="307,195,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="307,218,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="307,241,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="307,264,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="307,287,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtOnnersMy3" HorizontalAlignment="Left" Height="23" Margin="172,361,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesMy3" HorizontalAlignment="Left" Height="23" Margin="172,384,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsMy3" HorizontalAlignment="Left" Height="23" Margin="172,407,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusMy3" HorizontalAlignment="Left" Height="23" Margin="172,430,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveMy3" HorizontalAlignment="Left" Height="23" Margin="172,453,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="214,378,0,-50" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="9,361,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="9,384,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="9,407,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="9,430,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="9,453,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="txtOnnersEnemy3" HorizontalAlignment="Left" Height="23" Margin="470,364,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtAcesEnemy3" HorizontalAlignment="Left" Height="23" Margin="470,387,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtCrownsEnemy3" HorizontalAlignment="Left" Height="23" Margin="470,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtBonusEnemy3" HorizontalAlignment="Left" Height="23" Margin="470,433,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <TextBox Name="txtLeveEnemy3" HorizontalAlignment="Left" Height="23" Margin="470,456,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Background="WhiteSmoke" IsReadOnly="True"/>
+        <GridSplitter HorizontalAlignment="Left" Background="Black"  Height="152" Margin="512,381,0,-51" VerticalAlignment="Top" Width="3" RenderTransformOrigin="0.5,0.5">
+            <GridSplitter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </GridSplitter.RenderTransform>
+        </GridSplitter>
+        <Label Content="Онеры:" HorizontalAlignment="Left" Margin="307,364,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тузы:" HorizontalAlignment="Left" Margin="307,387,0,0" VerticalAlignment="Top"/>
+        <Label Content="Коронки:" HorizontalAlignment="Left" Margin="307,410,0,0" VerticalAlignment="Top"/>
+        <Label Content="Премии:" HorizontalAlignment="Left" Margin="307,433,0,0" VerticalAlignment="Top"/>
+        <Label Content="Взятки:" HorizontalAlignment="Left" Margin="307,456,0,0" VerticalAlignment="Top"/>
+        
+        
+        <Button Name ="btnWinner" Content="Узнать победителя" HorizontalAlignment="Left" Margin="235,490,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="btnWinner_Click"/>
+
+    </Grid>
+</Window>
