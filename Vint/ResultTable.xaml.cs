@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.OleDb;
+using System.Data;
 
 namespace Vint
 {
@@ -19,6 +21,14 @@ namespace Vint
     /// </summary>
     public partial class ResultTable : Window
     {
+
+        private int myPoints = 0;
+        private int bot1Points = 0;
+        private int bot2Points = 0;
+        private int bot3Points = 0;
+        private string winner;
+        private int num;
+
         public ResultTable()
         {
             InitializeComponent();
@@ -27,6 +37,10 @@ namespace Vint
         public ResultTable(ResultTable r)
         {
             InitializeComponent();
+
+            lblName1.Content = r.lblName1.Content;
+            lblName2.Content = r.lblName2.Content;
+            lblName3.Content = r.lblName3.Content;
 
             if (r.btnWinner.IsEnabled) btnWinner.IsEnabled = true;
             else btnWinner.IsEnabled = false;
@@ -69,14 +83,91 @@ namespace Vint
             txtLeveEnemy3.Text = r.txtLeveEnemy3.Text;
         }
 
-        private void btnWinner_Click(object sender, RoutedEventArgs e)
+        private void changeStatistic()
         {
-            int myPoints = 0;
-            int bot1Points = 0;
-            int bot2Points = 0;
-            int bot3Points = 0;
+            OleDbConnection con = new OleDbConnection(string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}\..\..\sources\statistic.mdb", Environment.CurrentDirectory));
+            for (int i = 0; i < 4; i++)
+            {
+                int points = 0;
+                string nickname;
+                switch (i)
+                {
+                    case 0:
+                        points = myPoints;
+                        nickname = (Owner as MainWindow).lblSouth.Content.ToString();
+                        break;
+                    case 1:
+                        points = bot1Points;
+                        nickname = "Бот 1";
+                        break;
+                    case 2:
+                        points = bot2Points;
+                        nickname = "Бот 2";
+                        break;
+                    case 3:
+                        points = bot3Points;
+                        nickname = "Бот 3";
+                        break;
+                    default:
+                        nickname = "?";
+                        break;
+                }
 
-            
+
+                OleDbCommand oc = new OleDbCommand("SELECT count(*) FROM players WHERE nick = '" + nickname + "'", con);
+                con.Open();
+                int count = Convert.ToInt16(oc.ExecuteScalar());
+                con.Close();
+
+                if (count > 0)
+                {
+                    con.Open();
+                    string sqlStr;
+                    if (i == num)
+                        sqlStr = "UPDATE players SET winrate = (wins + 1) / (games + 1) * 100, wins = wins + 1, averageScore = (averageScore * games + " + points + ") / (games + 1), games = games + 1 WHERE nick = '" + nickname + "'";
+                    else
+                        sqlStr = "UPDATE players SET winrate = wins / (games + 1) * 100, averageScore = (averageScore * games + " + points + ") / (games + 1), games = games + 1 WHERE nick = '" + nickname + "'";
+                    OleDbCommand cmd = new OleDbCommand(sqlStr, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else
+                {
+                    con.Open();
+                    string sqlStr;
+                    if (i == num)
+                        sqlStr = "INSERT INTO players (nick, wins, games, winrate, averageScore) VALUES ('" + nickname + "', 1, 1, 100, " + points + ")";
+                    else
+                        sqlStr = "INSERT INTO players (nick, wins, games, winrate, averageScore) VALUES ('" + nickname + "', 0, 1, 0, " + points + ")";
+                    OleDbCommand cmd = new OleDbCommand(sqlStr, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+        private void btnWinner_Click(object sender, RoutedEventArgs e)
+        {        
+
+            WinnerAnnouncer wa = new WinnerAnnouncer();
+            wa.Owner = this;
+            wa.Title += winner;
+            wa.lblNick.Content = (Owner as MainWindow).lblSouth.Content;
+            wa.lbl0.Content = myPoints.ToString();
+            wa.lbl1.Content = bot1Points.ToString();
+            wa.lbl2.Content = bot2Points.ToString();
+            wa.lbl3.Content = bot3Points.ToString();
+                        
+            wa.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Будем узнавать победителя и менять статистику, только если это 3 роббер и мы этого еще не сделали 
+
+            if (!(Owner as MainWindow).canChangeDB) return;
+
+            // Считаем очки
             try
             {
                 myPoints += Int32.Parse((Owner as MainWindow).rt.txtOnnersMy1.Text);
@@ -151,27 +242,26 @@ namespace Vint
             }
 
 
-
+            // Выявляем победителя
             int max = myPoints;
-            int num = 0;
 
             if (bot1Points > max)
             {
                 max = bot1Points;
                 num = 1;
             }
-            if (bot1Points > max)
+            if (bot2Points > max)
             {
-                max = bot1Points;
+                max = bot2Points;
                 num = 2;
             }
-            if (bot1Points > max)
+            if (bot3Points > max)
             {
-                max = bot1Points;
+                max = bot3Points;
                 num = 3;
             }
 
-            string winner;
+            // Имя победителя
             switch (num)
             {
                 case 0:
@@ -191,15 +281,9 @@ namespace Vint
                     break;
             }
 
-            WinnerAnnouncer wa = new WinnerAnnouncer();
-            wa.Owner = this;
-            wa.Title += winner;
-            wa.lblNick.Content = (Owner as MainWindow).lblSouth.Content;
-            wa.lbl0.Content = myPoints.ToString();
-            wa.lbl1.Content = bot1Points.ToString();
-            wa.lbl2.Content = bot2Points.ToString();
-            wa.lbl3.Content = bot3Points.ToString();
-            wa.ShowDialog();
+
+            changeStatistic();
+            (Owner as MainWindow).canChangeDB = false;
         }
 
     }

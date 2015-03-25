@@ -32,10 +32,15 @@
                 <MenuItem Name="miExit" Header="Выход" Width="180" HorizontalAlignment="Left" Click="miExit_Click"/>
             </MenuItem>
 
+            <MenuItem Name="miStat" Header="Статистика" Width="80" Click="miStat_Click"/>
+            
+            <MenuItem Name="miScore" Header="Счет" Width="50" Click="miScore_Click"/>
+            
             <MenuItem Name="miHelp" Header="Помощь" Width="70">
                 <MenuItem Name="miManual" Header="Учебник (PDF)" Click="miManual_Click"/>
                 <MenuItem Name="miControls" Header="Управление" Click="miControls_Click"/>
             </MenuItem>
+            
         </Menu>
 
         <Canvas Name="cnvTable" Height="240" Canvas.Left="230" Canvas.Top="170" Width="240" RenderTransformOrigin="0.04,1.36"/>

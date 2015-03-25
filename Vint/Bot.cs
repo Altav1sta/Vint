@@ -135,60 +135,86 @@ namespace Vint
             if (s == null)
             {
                 // Сначала попытаемся забрать взятку козырем
-                if ((win.contractSuit != null) && (win.curSuit != null) && (suitLength((Suit)win.curSuit) == 0))
+                if ((win.contractSuit != null) && (win.curSuit != null) && (suitLength((Suit)win.curSuit) == 0) && (suitLength((Suit)win.contractSuit) > 0))
                 {
-                    Suit? tmp = win.curSuit;
-                    win.curSuit = win.contractSuit;
-                    for (int i = 0; i < 13; i++)
+                    // Если сoюзник уже может забрать - не пытаемся забрать  
+                    bool allyCanTake = false;                      
+                    if ((win.getHand(deck.allySide()).Count == deck.Count - 1))
                     {
-                        foreach (Card c in deck)
+                        // Если он забирает козырем
+                        if (win.tableCards[deck.allySide()].suit == win.contractSuit)
                         {
-                            if (((int)c.nominal == i) && (c.suit == (Suit)win.contractSuit) && canLayAsHighCard(i))
+                            allyCanTake = true;
+                            // Если открытый враг-болван, ходящий после нас может перебить - пропускаем
+                            if ((win.bolvan != deck.side) && (win.bolvan != deck.allySide()) && win.getHand(win.bolvan).isFaced && (win.getHand(win.bolvan).Count == deck.Count) &&
+                                ((win.curSuit == win.contractSuit) || (win.getBot(win.bolvan).suitLength((Suit)win.curSuit) == 0)) && 
+                                (win.getBot(win.bolvan).topNominal((Suit)win.contractSuit) > (int)win.tableCards[deck.allySide()].nominal))
                             {
-                                // Если сюзник уже может забрать - не будем забирать козырем                                
-                                if ((win.getHand(deck.allySide()).Count == deck.Count - 1))
-                                {
-                                    if (win.tableCards[deck.allySide()].suit != win.contractSuit) win.curSuit = tmp;
-                                    if (canLayAsHighCard((int)win.tableCards[deck.allySide()].nominal))
-                                    {
-                                        discard((Suit)tmp);
-                                        return;
-                                    }
-                                }
+                                allyCanTake = false;
+                            }
 
-                                win.curSuit = tmp;
-                                win.handCard_MouseLeftButtonDown(c.skin, null);
-                                return;
+                            // Если на столе уже есть больший козырь - пропускаем
+                            for (int k = 0; k < 4; k++)
+                            {
+                                if ((win.tableCards[k] != null) && (win.tableCards[k].suit == win.contractSuit) && ((int)(win.tableCards[k].nominal) > (int)win.tableCards[deck.allySide()].nominal))
+                                {
+                                    allyCanTake = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (canLayAsHighCard((int)win.tableCards[deck.allySide()].nominal)) allyCanTake = true;
+                        }
+                    }
+
+                    // Если нет
+                    if (!allyCanTake)
+                    {
+                        for (int i = 0; i < 13; i++)
+                        {
+                            foreach (Card c in deck)
+                            {
+                                if (((int)c.nominal == i) && (c.suit == (Suit)win.contractSuit))
+                                {
+                                    // Если у открытого врага-болвана, ходящего после нас есть козырь старше и нет масти - пропускаем
+                                    if ((win.bolvan != deck.side) && (win.bolvan != deck.allySide()) && win.getHand(win.bolvan).isFaced && (win.getHand(win.bolvan).Count == deck.Count) &&
+                                        ((win.curSuit == win.contractSuit) || (win.getBot(win.bolvan).suitLength((Suit)win.curSuit) == 0)) && (win.getBot(win.bolvan).topNominal((Suit)win.contractSuit) > i))
+                                    {
+                                        continue;
+                                    }
+
+                                    // Если на столе уже есть больший козырь - пропускаем
+                                    bool flag = false;
+                                    for (int k = 0; i < 4; i++)
+                                    {
+                                        if ((win.tableCards[k] != null) && (win.tableCards[k].suit == win.contractSuit) && ((int)(win.tableCards[k].nominal) > i))
+                                        {
+                                            flag = true;
+                                        }
+                                    }
+                                    if (flag) continue;
+                                    
+                                    win.handCard_MouseLeftButtonDown(c.skin, null);
+                                    return;
+                                }
                             }
                         }
                     }
-                    win.curSuit = tmp;
                 }
 
                 // Если не получилось:
 
-                // Смотрим, чтобы карта была наименьшего номинала и при этом не была частью "лесенки" и козырем
+                // Смотрим, чтобы карта была наименьшего номинала и при этом не была козырем
                 foreach (Card c in deck)
                 {
-                    if (((Suit?)c.suit != win.contractSuit) && ((int)(c.nominal) < minNom) && (straightLength(c.suit, topNominal(c.suit)) != suitLength(c.suit)))
+                    if (((Suit?)c.suit != win.contractSuit) && ((int)(c.nominal) < minNom))
                     {
                         minCard = c;
                         minNom = (int)(c.nominal);
                     }
                 }
 
-                // Если все наименьшие карты являются частями "лесенок" - не берем лесенки в расчет
-                if (minNom == 100)
-                {
-                    foreach (Card c in deck)
-                    {
-                        if (((Suit)c.suit != win.contractSuit) && ((int)(c.nominal) < minNom))
-                        {
-                            minCard = c;
-                            minNom = (int)(c.nominal);
-                        }
-                    }
-                }
                 // Если остались только козыри - ходим ими
                 if (minNom == 100)
                 {

@@ -31,6 +31,7 @@ namespace Vint
         public Suit? contractSuit = null;
         public int robber;
         public int part;
+        public bool canChangeDB = false;
 
         public int myAcesCount;
         public int enemyAcesCount;
@@ -48,7 +49,10 @@ namespace Vint
         public int EnemyCrowns;
         public int EnemyBonus;
         public int EnemyLeve;
-        
+
+        public int MyTmpOnners = 0;
+        public int EnemyTmpOnners = 0;
+
         bool isShown = false;
         public ResultTable rt = new ResultTable();
         Bot wBot; 
@@ -200,7 +204,7 @@ namespace Vint
             }
         }
 
-        private Label getLabel(int side)
+        public Label getLabel(int side)
         {
             switch (side)
             {
@@ -240,7 +244,6 @@ namespace Vint
 
             }
         }
-
-
+        
     }
 }

@@ -61,9 +61,11 @@ namespace Vint
             clearDeckSkins(takenCards);
             clearDeckSkins(lostCards);
 
-            tableCards = new Card[4];
+            //tableCards = new Card[4];
             takenCards.clear();
             lostCards.clear();
+            takenHighestCards.clear();
+            lostHighestCards.clear();
             lblTaken.Content = "Взятки: 0";
             lblLost.Content = "Лузы: 0";
 
@@ -253,10 +255,7 @@ namespace Vint
                     {
                         RoundResult rr = new RoundResult();
                         rr.Owner = this;
-
-
-                        //resultMessage();
-
+                                                
                         if ((MyLeve >= 500) || (EnemyLeve >= 500))
                         {
                             if (part == 1)
@@ -342,6 +341,7 @@ namespace Vint
                                     rt.txtBonusEnemy3.Text = EnemyBonus.ToString();
                                     rt.txtLeveEnemy3.Text = EnemyLeve.ToString();
 
+                                    canChangeDB = true;
                                     rt.btnWinner.IsEnabled = true;
 
                                 break;
@@ -409,10 +409,10 @@ namespace Vint
 
         }
 
+        public void btnUndo_Click(object sender, RoutedEventArgs e)
         // В этом методе рассмотрены все варианты отката хода игрока.
         // Все зависит от того, какая из сторон ходила первой и
         // управляет ли ходом болвана игрок
-        public void btnUndo_Click(object sender, RoutedEventArgs e)
         {            
             roundCompleted = false;
             getLabel(curPlayer).Foreground = Brushes.Black;
@@ -576,13 +576,14 @@ namespace Vint
             EnterNickname en = new EnterNickname();
             en.Owner = this;
             en.ShowDialog();
-
             lblSouth.Content = en.txtBox.Text;
+
+            rt = new ResultTable();
             rt.lblName1.Content = en.txtBox.Text + " и Бот 1";
             rt.lblName2.Content = en.txtBox.Text + " и Бот 2";
             rt.lblName3.Content = en.txtBox.Text + " и Бот 3";
-
             rt.Owner = this;
+
             robber = 1;
             part = 1;
 
@@ -597,6 +598,22 @@ namespace Vint
             ControlsWindow cw = new ControlsWindow();
             cw.Owner = this;
             cw.Show();
+        }
+
+        private void miStat_Click(object sender, RoutedEventArgs e)
+        {
+            Statistic s = new Statistic();
+            s.Owner = this;
+            s.Show();
+        }
+
+        private void miScore_Click(object sender, RoutedEventArgs e)
+        {
+            ResultTable r = new ResultTable(rt);
+            r.Height = r.Height - 30;
+            r.Owner = this;
+            r.btnWinner.Visibility = System.Windows.Visibility.Hidden;
+            r.Show();
         }
         
     }

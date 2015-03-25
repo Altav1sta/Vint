@@ -26,6 +26,8 @@ namespace Vint
         public Card[] tableCards = new Card[4];
         public Deck lostCards = new Deck(150, 350, 90, false, -1);
         public Deck takenCards = new Deck(470, 347, 0, false, -1);
+        public Deck takenHighestCards = new Deck(470, 347, 0, false, -1);
+        public Deck lostHighestCards = new Deck(470, 347, 0, false, -1);
         
 
 
@@ -67,7 +69,7 @@ namespace Vint
                     drawDeckSkins(a);
                     drawDeckSkins(b);
                 };
-                 canvasMainArea.Dispatcher.Invoke(act);
+                canvasMainArea.Dispatcher.Invoke(act);
 
             }
         }
@@ -83,20 +85,6 @@ namespace Vint
                 counter++;
             }
         }
-
-        /*private void resultMessage()
-        {
-            if ((contractPerformer == 0) || (contractPerformer == 2))
-            {
-                if (takenCards.Count / 4 >= 6 + contractNominal) MessageBox.Show(String.Format("Player \"{0}\" won!\nScore: {1}", getLabel(contractPerformer).Content, takenPoints));
-                else MessageBox.Show(String.Format("Player \"{0}\" lost!\nScore: {1}", getLabel(contractPerformer).Content, -1000 * contractNominal));
-            }
-            else
-            {
-                if (lostCards.Count / 4 >= 6 + contractNominal) MessageBox.Show(String.Format("Player \"{0}\" won!\nScore: {1}", getLabel(contractPerformer).Content, lostPoints));
-                else MessageBox.Show(String.Format("Player \"{0}\" lost!\nScore: {1}", getLabel(contractPerformer).Content, -1000 * contractNominal));
-            }            
-        }*/
 
         private void clearTable()
         {
@@ -129,15 +117,18 @@ namespace Vint
                 case Nominal.Jack:
                 case Nominal.Queen:
                 case Nominal.King:
-                    if (isTaken)
+                    if ((contractSuit != null) && (tableCards[firstPlayer].suit == contractSuit))
                     {
-                        MyOnners += 100 * contractNominal;
-                        myOnnersCount++;
-                    }
-                    else
-                    {
-                        EnemyOnners += 100 * contractNominal;
-                        enemyOnnersCount++;
+                        if (isTaken)
+                        {
+                            MyTmpOnners += 100 * contractNominal;
+                            //myOnnersCount++;
+                        }
+                        else
+                        {
+                            EnemyTmpOnners += 100 * contractNominal;
+                            //enemyOnnersCount++;
+                        }
                     }
                     break;
                 case Nominal.Ace:
@@ -146,24 +137,24 @@ namespace Vint
                         if (isTaken)
                         {
                             MyAces += 250 * contractNominal;
-                            myAcesCount++;
+                            //myAcesCount++;
                         }
                         else
                         {
                             EnemyAces += 250 * contractNominal;
-                            enemyAcesCount++;
+                            //enemyAcesCount++;
                         }
                     }
-                    else
+                    //else
                     {
                         if (isTaken) 
                         {
-                            MyOnners += 100 * contractNominal;
+                            MyTmpOnners += 100 * contractNominal;
                             myAcesCount++;
                         }
                         else 
                         {
-                            EnemyOnners += 100 * contractNominal;
+                            EnemyTmpOnners += 100 * contractNominal;
                             enemyAcesCount++;
                         }
                     }
@@ -173,34 +164,45 @@ namespace Vint
 
             cnvTable.Children.Clear();
 
-
+            // Карты со стола убираются в соответствующую стопку и запоминаются карты, которыми забрали
             switch (isTaken)
             {
                 case true:
                     clearDeckSkins(takenCards);
-                    takenCards.push(tableCards[firstPlayer]);
+                    takenHighestCards.push(tableCards[firstPlayer]);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        takenCards.push(tableCards[i]);
+                        tableCards[i] = null;
+                    }
                     drawDeckSkins(takenCards);
                     break;
                 case false:
                     clearDeckSkins(lostCards);
-                    lostCards.push(tableCards[firstPlayer]);
+                    lostHighestCards.push(tableCards[firstPlayer]);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        lostCards.push(tableCards[i]);
+                        tableCards[i] = null;
+                    }
                     drawDeckSkins(lostCards);
                     break;
             }
                 
-            lblTaken.Content = "Взятки: " + takenCards.Count;
-            lblLost.Content = "Лузы: " + lostCards.Count;
+            lblTaken.Content = "Взятки: " + takenHighestCards.Count;
+            lblLost.Content = "Лузы: " + lostHighestCards.Count;
 
 
 
             // Подсчет очков после раунда
             if (myHand.Count == 0)
-            {       
+            {    
+                /*
                 // Если в козырной игре у каждой стороны по два туза,
                 // тузы записываются в онеры только стороне, взявшей леве
                 if ((contractSuit != null) && (myAcesCount == 2) && (enemyAcesCount == 2))
                 {
-                    if (takenCards.Count > 6) EnemyOnners -= 200 * contractNominal;
+                    if (takenHighestCards.Count > 6) EnemyOnners -= 200 * contractNominal;
                     else MyOnners -= 200 * contractNominal;
                 }
 
@@ -217,15 +219,29 @@ namespace Vint
                     {
                         MyOnners -= 400 * contractNominal;
                     }
+                }*/
+
+                // Онеры
+                if (takenHighestCards.Count > lostHighestCards.Count)
+                {
+                    MyOnners += MyTmpOnners;
+                    MyTmpOnners = 0;
+                    EnemyTmpOnners = 0;
+                }
+                else
+                {
+                    EnemyOnners += EnemyTmpOnners;
+                    MyTmpOnners = 0;
+                    EnemyTmpOnners = 0;
                 }
 
                 // Леве
-                MyLeve += takenCards.Count * contractNominal * 10;
-                EnemyLeve += lostCards.Count * contractNominal * 10;
+                MyLeve += takenHighestCards.Count * contractNominal * 10;
+                EnemyLeve += lostHighestCards.Count * contractNominal * 10;
 
                 // Коронки
-                MyCrowns += crownsPoints(takenCards);
-                EnemyCrowns += crownsPoints(lostCards);
+                MyCrowns += crownsPoints(takenHighestCards);
+                EnemyCrowns += crownsPoints(lostHighestCards);
 
                 // Премии
                 if (contractNominal == 6)
@@ -233,13 +249,13 @@ namespace Vint
                     if ((contractPerformer == 0) || (contractPerformer == 2))
                     {
                         MyBonus += 5000;
-                        if (takenCards.Count >= 6) MyBonus += 1000;
+                        if (takenHighestCards.Count >= 6) MyBonus += 1000;
                         else EnemyBonus += 5000;
                     }
                     else
                     {
                         EnemyBonus += 5000;
-                        if (lostCards.Count >= 6) EnemyBonus += 1000;
+                        if (lostHighestCards.Count >= 6) EnemyBonus += 1000;
                         else MyBonus += 5000;
                     }
                 }
@@ -248,20 +264,20 @@ namespace Vint
                     if ((contractPerformer == 0) || (contractPerformer == 2))
                     {
                         MyBonus += 10000;
-                        if (takenCards.Count == 7) MyBonus += 2000;
+                        if (takenHighestCards.Count == 7) MyBonus += 2000;
                         else EnemyBonus += 10000;
                     }
                     else
                     {
                         EnemyBonus += 10000;
-                        if (lostCards.Count == 7) EnemyBonus += 2000;
+                        if (lostHighestCards.Count == 7) EnemyBonus += 2000;
                         else MyBonus += 10000;
                     }
                 }
-                if (((contractPerformer == 0) || (contractPerformer == 2)) && (takenCards.Count < contractNominal + 6))
-                    EnemyBonus += (contractNominal + 6 - takenCards.Count) * contractNominal * 1000;
-                if (((contractPerformer == 1) || (contractPerformer == 3)) && (lostCards.Count < contractNominal + 6))
-                    MyBonus += (contractNominal + 6 - lostCards.Count) * contractNominal * 1000;
+                if (((contractPerformer == 0) || (contractPerformer == 2)) && (takenHighestCards.Count < contractNominal + 6))
+                    EnemyBonus += (contractNominal + 6 - takenHighestCards.Count) * contractNominal * 1000;
+                if (((contractPerformer == 1) || (contractPerformer == 3)) && (lostHighestCards.Count < contractNominal + 6))
+                    MyBonus += (contractNominal + 6 - lostHighestCards.Count) * contractNominal * 1000;
 
             }
         }

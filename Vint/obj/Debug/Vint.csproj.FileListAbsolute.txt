@@ -47,3 +47,6 @@ C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Interop.AcroPDFLib.dl
 C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Vint.csproj.ResolveComReference.cache
 C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Vint.pdfViewer.resources
+C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Statistic.baml
+C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Statistic.g.cs
+C:\Users\Altav1sta\Dropbox\Efim diplom\Vint\Vint\obj\Debug\Interop.ADODB.dll
