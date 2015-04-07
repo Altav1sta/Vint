@@ -1,5 +1,5 @@
-
-Vint is very interesting and hard to learn commercial card game. More info about how to play, game rules and history of Vint 
+# Vint
+It is a very interesting and hard to learn commercial card game. More info about how to play, game rules and history of Vint 
 you can find in <a href="https://github.com/Altav1sta/Vint/blob/master/Manual.pdf">Manual</a>.
 
 I created this game to help my friend with his diploma. Code was written in <b>C#</b> using <b>WPF</b>.<br/>
