@@ -4,14 +4,14 @@
         Title="Победил " Height="200" Width="230" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="screw26.ico">
     <Grid>
         <Label Name="lblNick" Content="Игрок:" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Бот 1:" HorizontalAlignment="Left" Margin="25,60,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Бот 2:" HorizontalAlignment="Left" Margin="25,90,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Бот 3:" HorizontalAlignment="Left" Margin="25,120,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Игрок 1:" HorizontalAlignment="Left" Margin="25,60,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Игрок 2:" HorizontalAlignment="Left" Margin="25,90,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Игрок 3:" HorizontalAlignment="Left" Margin="25,120,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label Name="lbl0" Content="0" HorizontalAlignment="Left" Margin="100,30,0,0" VerticalAlignment="Top"/>
-        <Label Name="lbl1" Content="0" HorizontalAlignment="Left" Margin="100,60,0,0" VerticalAlignment="Top"/>
-        <Label Name="lbl2" Content="00" HorizontalAlignment="Left" Margin="100,90,0,0" VerticalAlignment="Top"/>
-        <Label Name="lbl3" Content="00" HorizontalAlignment="Left" Margin="100,120,0,0" VerticalAlignment="Top"/>
+        <Label Name="lbl0" Content="0" HorizontalAlignment="Left" Margin="110,30,0,0" VerticalAlignment="Top"/>
+        <Label Name="lbl1" Content="0" HorizontalAlignment="Left" Margin="110,60,0,0" VerticalAlignment="Top"/>
+        <Label Name="lbl2" Content="0" HorizontalAlignment="Left" Margin="110,90,0,0" VerticalAlignment="Top"/>
+        <Label Name="lbl3" Content="0" HorizontalAlignment="Left" Margin="110,120,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

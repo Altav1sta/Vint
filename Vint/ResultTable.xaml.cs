@@ -98,15 +98,15 @@ namespace Vint
                         break;
                     case 1:
                         points = bot1Points;
-                        nickname = "Бот 1";
+                        nickname = "Игрок 1";
                         break;
                     case 2:
                         points = bot2Points;
-                        nickname = "Бот 2";
+                        nickname = "Игрок 2";
                         break;
                     case 3:
                         points = bot3Points;
-                        nickname = "Бот 3";
+                        nickname = "Игрок 3";
                         break;
                     default:
                         nickname = "?";
@@ -268,13 +268,13 @@ namespace Vint
                     winner = (Owner as MainWindow).lblSouth.Content.ToString();
                     break;
                 case 1:
-                    winner = "Бот 1";
+                    winner = "Игрок 1";
                     break;
                 case 2:
-                    winner = "Бот 2";
+                    winner = "Игрок 2";
                     break;
                 case 3:
-                    winner = "Бот 3";
+                    winner = "Игрок 3";
                     break;
                 default:
                     winner = "-";

@@ -31,7 +31,7 @@ namespace Vint
             OleDbConnection con = new OleDbConnection(string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0}\..\..\sources\statistic.mdb", Environment.CurrentDirectory));
             con.Open();
 
-            OleDbDataAdapter da = new OleDbDataAdapter("SELECT nick,wins,games,winrate,averageScore FROM players", con);
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT nick AS Имя, wins AS Победы, games AS Игры, winrate AS Винрейт, averageScore AS СреднийСчет FROM players", con);
             DataSet ds = new DataSet();
             da.Fill(ds, "players");
 

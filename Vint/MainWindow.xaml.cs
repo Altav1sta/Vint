@@ -579,9 +579,9 @@ namespace Vint
             lblSouth.Content = en.txtBox.Text;
 
             rt = new ResultTable();
-            rt.lblName1.Content = en.txtBox.Text + " и Бот 1";
-            rt.lblName2.Content = en.txtBox.Text + " и Бот 2";
-            rt.lblName3.Content = en.txtBox.Text + " и Бот 3";
+            rt.lblName1.Content = en.txtBox.Text + " и Игрок 1";
+            rt.lblName2.Content = en.txtBox.Text + " и Игрок 2";
+            rt.lblName3.Content = en.txtBox.Text + " и Игрок 3";
             rt.Owner = this;
 
             robber = 1;
